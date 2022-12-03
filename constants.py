@@ -48,8 +48,24 @@ def factorial(num):
     return num * factorial(num - 1)
 
 
-priority_dict = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3, '%': 4, '$': 5, '&': 5, '@': 5, '~': 6, '!': 6}
+def digits_sum(num):
+    res = 0
+    for digit in str(num):
+        if digit != '.':
+            res += int(digit)
+    return res
+
+
+def is_number(token: str) -> bool:
+    try:
+        float(token)
+        return True
+    except ValueError:
+        return False
+
+
+priority_dict = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3, '%': 4, '$': 5, '&': 5, '@': 5, '~': 6, '!': 6, '#': 6}
 operators_dict = {'+': plus, '-': minus, '*': multiply, '/': divide, '^': power, '%': mod, '$': maximum, '&': minimum,
-                  '@': avg, '~': neg, '!': factorial}
+                  '@': avg, '~': neg, '!': factorial, '#': digits_sum}
 side_of_operands = {'+': 'both', '-': 'both', '*': 'both', '/': 'both', '^': 'both', '%': 'both', '$': 'both',
-                    '&': 'both', '@': 'both', '~': 'right', '!': 'left'}
+                    '&': 'both', '@': 'both', '~': 'right', '!': 'left', '#': 'left'}
